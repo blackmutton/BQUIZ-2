@@ -32,11 +32,11 @@ include "./api/base.php";
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
+				<a class="blo" href="?do=acc">帳號管理</a>
 				<a class="blo" href="?do=po">分類網誌</a>
-				<a class="blo" href="?do=news">最新文章</a>
-				<a class="blo" href="?do=pop">人氣文章</a>
-				<a class="blo" href="?do=know">講座訊息</a>
-				<a class="blo" href="?do=que">問卷調查</a>
+				<a class="blo" href="?do=news">最新文章管理</a>
+				<a class="blo" href="?do=know">講座管理</a>
+				<a class="blo" href="?do=que">問卷管理</a>
 			</div>
 			<div class="hal" id="main">
 				<div>
@@ -57,12 +57,12 @@ include "./api/base.php";
 					</span>
 					<div class="content">
 						<?php
-						$do = $_GET['do'] ?? 'admin';
-						$file = "./front/{$do}.php";
+						$do = $_GET['do'] ?? 'main';
+						$file = "./backend/{$do}.php";
 						if (file_exists($file)) {
 							include $file;
 						} else {
-							include "./front/main.php";
+							include "./backend/main.php";
 						}
 						?>
 					</div>
