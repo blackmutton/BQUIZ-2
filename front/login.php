@@ -11,8 +11,8 @@
         </tr>
         <tr>
             <td>
-                <button onclick="login()">清除</button>
-                <button onclick="clear()">登入</button>
+                <button onclick="login()">登入</button>
+                <button onclick="clear()">清除</button>
             </td>
             <td>
                 <a href="?do=forget">忘記密碼</a>
@@ -24,7 +24,30 @@
 
 <script>
     function login() {
-
+        $.post('./api/chk_acc.php', {
+            acc: $("#acc").val()
+        }, (chkAcc) => {
+            console.log(chkAcc)
+            if (parseInt(chkAcc) == 1) {
+                $.post("./api/chk_pw.php", {
+                    acc: $("#acc").val(),
+                    pw: $("#pw").val()
+                }, (chkPw) => {
+                    console.log(chkPw)
+                    if (parseInt(chkPw)) {
+                        if ($("#acc").val() == 'admin') {
+                            location.href = 'back.php'
+                        } else {
+                            location.href = 'index.php'
+                        }
+                    } else {
+                        alert("密碼錯誤")
+                    }
+                })
+            } else {
+                alert("查無帳號")
+            }
+        })
     }
 
     function clear() {
