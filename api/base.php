@@ -104,6 +104,7 @@ function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=dbno2";
     $pdo = new PDO($dsn, 'root', '');
+    echo $sql;
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 function to($url)
@@ -118,5 +119,17 @@ function dd($array)
     echo "</pre>";
 }
 
-$User=new DB('users');
+$User = new DB('users');
+$Total = new DB('total');
 
+if (!isset($_SESSION['total'])) {
+    if ($Total->count(['date' => date("Y-m-d")]) > 0) {
+        $total = $Total->find(['date' => date("Y-m-d")]);
+        $total['total']++;
+        // echo $total;
+        $Total->save($total);
+    } else {
+        $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
+    }
+    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
+}
