@@ -11,20 +11,31 @@
     </fieldset>
     <fieldset style='padding:10px;width:650px;'>
         <legend id='newsTitle'>文章列表</legend>
+        <div id="content"></div>
     </fieldset>
 </div>
 
 <script>
+    getTitles(1);
     $(".type").on("click", function() {
         $('#navType').text($(this).text());
         getTitles($(this).data('type'))
     })
 
     function getTitles(type) {
-        console.log(type);
+        $('#content').load("./api/get_titles.php", {
+            type
+        })
+        /* $.get("./api/get_titles.php", {
+            type
+        }, (title) => {
+            $("#content").html(titles)
+        }) */
     }
 
     function getNews(id) {
-
+        $('#content').load("./api/get_news.php", {
+            id
+        })
     }
 </script>
