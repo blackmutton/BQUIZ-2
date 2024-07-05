@@ -104,7 +104,7 @@ function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=dbno2";
     $pdo = new PDO($dsn, 'root', '');
-    echo $sql;
+    // echo $sql;
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 function to($url)
