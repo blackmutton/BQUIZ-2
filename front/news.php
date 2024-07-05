@@ -5,7 +5,7 @@
 <table class="tab">
     <tr>
         <td width="30%">標題</td>
-        <td width="50%">內容</td>
+        <td width="60%">內容</td>
         <td></td>
     </tr>
     <?php
@@ -27,7 +27,22 @@
                     <?= nl2br($row['article']); ?>
                 </div>
             </td>
-            <td></td>
+            <td>
+                <?php
+                if (isset($_SESSION['user'])) {
+                    $chk = $Log->count(['user' => $_SESSION['user'], 'news' => $row['id']]);
+                    if ($chk > 0) {
+                        echo "<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
+                        echo "收回讚";
+                        echo "</a>";
+                    } else {
+                        echo "<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
+                        echo "讚";
+                        echo "</a>";
+                    }
+                }
+                ?>
+            </td>
         </tr>
     <?php
     }
@@ -55,5 +70,25 @@
 <script>
     $(".title").on("click", function() {
         $(this).next().children(".short,.all").toggle();
+    })
+
+    $('.good').on("click", function() {
+
+        let data = {
+            user: $(this).data('user'),
+            news: $(this).data('news')
+        }
+
+        $.post("./api/good.php", data, () => {
+
+            switch ($(this).text()) {
+                case "讚":
+                    $(this).text("收回讚")
+                    break;
+                case "收回讚":
+                    $(this).text("讚")
+                    break;
+            }
+        })
     })
 </script>
