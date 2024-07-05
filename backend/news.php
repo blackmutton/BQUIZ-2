@@ -22,12 +22,13 @@
                     <td><?= $row['title'] ?></td>
                     <td><input type="checkbox" name="sh[]" value="<?= $row['id'] ?>" <?= ($row['sh'] == 1) ? "checked" : "" ?>></td>
                     <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
+                    <td><input type="hidden" name="id[]" value="<?= $row['id'] ?>"></td>
                 </tr>
             <?php
             }
             ?>
-            <div class="ct"><input type="submit" value="確定修改"></div>
         </table>
+        <div class="ct"><input type="submit" value="確定修改"></div>
 
         <div class="ct">
             <?php
