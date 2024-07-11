@@ -26,7 +26,7 @@ function cl(x) {
 }
 
 function clean() {
-	// console.log("clean");
-	$("input[type='text'],input[type='password']").val();
+	console.log("clean");
+	$("input[type='text'],input[type='password']").val("");
 	$("input[type='checkbox']").prop('ckecked', false);
 }
