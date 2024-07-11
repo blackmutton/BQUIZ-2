@@ -1,3 +1,14 @@
+<style>
+    /* 可做可不做 */
+    /*    table td:nth-child(1) {
+        cursor: pointer;
+    }
+
+    table td:nth-child(1):hover {
+        cursor: pointer;
+        color: blue;
+    } */
+</style>
 <div>
     目前位置 : 首頁 > 最新文章區
 </div>
