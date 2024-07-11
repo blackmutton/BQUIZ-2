@@ -9,7 +9,7 @@
             <th>狀態</th>
         </tr>
         <?php
-        $ques = $Que->all();
+        $ques = $Que->all(['subject_id' => 0]);
         foreach ($ques as $idx => $que) :
         ?>
             <tr>
